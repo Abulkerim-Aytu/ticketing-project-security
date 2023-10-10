@@ -61,7 +61,8 @@ public class SecurityConfig {
 //                .httpBasic() // give us default pup-up box
                 .formLogin() // Here if I want to use my login form..
                 .loginPage("/login")
-                .defaultSuccessUrl("/welcome")
+//                .defaultSuccessUrl("/welcome")
+                .successHandler()
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
