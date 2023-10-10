@@ -62,7 +62,7 @@ public class SecurityConfig {
                 .formLogin() // Here if I want to use my login form..
                 .loginPage("/login")
 //                .defaultSuccessUrl("/welcome")
-                .successHandler()
+                .successHandler() // if we want to use our custom pages that came after login page we need to define it by user role type look in "AuthSuccessHandler" config class.
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
