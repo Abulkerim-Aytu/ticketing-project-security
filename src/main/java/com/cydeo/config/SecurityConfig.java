@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,19 +38,20 @@ public class SecurityConfig {
 //
 //    }
 
-    @Bean
+    @Bean  // Here I want to introduce my own validation security Structure.
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         return http
                 .authorizeRequests() // Here we basically check the authorization for each request
 //                .antMatchers("/user/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAuthority("Admin") // Here We are select pages that and what we can do some certain thing in the page
-//                .antMatchers("/project/**").hasAuthority("Manager")
-//                .antMatchers("/task/employee/**").hasAuthority("Employee")
-//                .antMatchers("/task/**").hasAuthority("Manager")
+                .antMatchers("/user/**").hasAuthority("Admin")
+                .antMatchers("/project/**").hasAuthority("Manager")
+                .antMatchers("/task/employee/**").hasAuthority("Employee")
+                .antMatchers("/task/**").hasAuthority("Manager")
+                // We need to define pages authorities because if we only define "Admin", we also can acsess other pages So if we want to prevent these kind of condition we need to define every page.
 //                .antMatchers("/task/**").hasAnyRole("EMPLOYEE","ADMIN")
 //                .antMatchers("/task/**").hasAuthority("ROLE_EMPLOYEE")
-                .antMatchers(
+                .antMatchers( // Something related with pages.Here We are select pages that what we can do some certain thing in the page
                         "/",
                         "/login",
                         "/fragments/**",
@@ -64,6 +66,10 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/welcome")
                 .failureUrl("/login?error=true")
                 .permitAll()
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
                 .and().build();
     }
 
