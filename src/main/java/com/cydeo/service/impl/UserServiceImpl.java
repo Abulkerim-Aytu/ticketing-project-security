@@ -47,6 +47,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(UserDTO user) {
+        user.setEnabled(true); // this Enamble is use for check account conferm condition.
+
         User obj = userMapper.convertToEntity(user);
 
         obj.setPassWord(passwordEncoder.encode(obj.getPassWord())); // Here we just set encode password for new created user.
