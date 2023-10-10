@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
+@EntityListeners((BaseEntity.class)) // this is related with "BaseEntityListener" class
 public class BaseEntity {
 
     @Id
@@ -26,5 +27,20 @@ public class BaseEntity {
     private LocalDateTime lastUpdateDateTime;
     @Column(nullable = false)
     private Long lastUpdateUserId;
+
+// // here(HardCoded) we move these code to another class to set to user ID "BaseEntityListener"
+//    @PrePersist
+//    private void onPrePersist(){
+//        this.insertDateTime = LocalDateTime.now();
+//        this.lastUpdateDateTime=LocalDateTime.now();
+//        this.insertUserId=1L;
+//        this.lastUpdateUserId=1L;
+//    }
+//
+//    @PreUpdate
+//    private void onPreUpdate(){
+//        this.lastUpdateDateTime=LocalDateTime.now();
+//        this.lastUpdateUserId=1L;
+//    }
 
 }

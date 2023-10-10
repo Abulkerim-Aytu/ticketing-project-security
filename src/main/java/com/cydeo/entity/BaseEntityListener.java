@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Component
 public class BaseEntityListener extends AuditingEntityListener {
 
-
+// we use this class to set ID
     @PrePersist
     private void onPrePersist(BaseEntity baseEntity){
 
