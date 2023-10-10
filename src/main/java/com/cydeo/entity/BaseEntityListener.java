@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class BaseEntityListener extends AuditingEntityListener {
 
 // we use this class to set ID
+// When we need to update or persist something we need to show that details in the dataBase for that we need to capture that information help of "BaseEntityListener" class
     @PrePersist
     private void onPrePersist(BaseEntity baseEntity){
 
