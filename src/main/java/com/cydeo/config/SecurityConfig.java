@@ -13,9 +13,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     private final SecurityService securityService;
+    private final AuthSuccessHandler authSuccessHandler;
 
-    public SecurityConfig(SecurityService securityService) {
+    public SecurityConfig(SecurityService securityService, AuthSuccessHandler authSuccessHandler) {
         this.securityService = securityService;
+        this.authSuccessHandler = authSuccessHandler;
     }
 
 
@@ -62,7 +64,7 @@ public class SecurityConfig {
                 .formLogin() // Here if I want to use my login form..
                 .loginPage("/login")
 //                .defaultSuccessUrl("/welcome")
-                .successHandler() // if we want to use our custom pages that came after login page we need to define it by user role type look in "AuthSuccessHandler" config class.
+                .successHandler(authSuccessHandler) // if we want to use our custom pages that came after login page we need to define it by user role type look in "AuthSuccessHandler" config class.
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
