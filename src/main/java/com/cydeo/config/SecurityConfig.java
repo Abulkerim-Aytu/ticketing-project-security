@@ -44,9 +44,9 @@ public class SecurityConfig {
                 .authorizeRequests() // Here we basically check the authorization for each request
 //                .antMatchers("/user/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasAuthority("Admin") // Here We are select pages that and what we can do some certain thing in the page
-                .antMatchers("/project/**").hasAuthority("Manager")
-                .antMatchers("/task/employee/**").hasAuthority("Employee")
-                .antMatchers("/task/**").hasAuthority("Manager")
+//                .antMatchers("/project/**").hasAuthority("Manager")
+//                .antMatchers("/task/employee/**").hasAuthority("Employee")
+//                .antMatchers("/task/**").hasAuthority("Manager")
 //                .antMatchers("/task/**").hasAnyRole("EMPLOYEE","ADMIN")
 //                .antMatchers("/task/**").hasAuthority("ROLE_EMPLOYEE")
                 .antMatchers(
