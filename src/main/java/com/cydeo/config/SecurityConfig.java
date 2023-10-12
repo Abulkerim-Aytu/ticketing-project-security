@@ -20,7 +20,7 @@ public class SecurityConfig {
         this.authSuccessHandler = authSuccessHandler;
     }
 
-
+// this one is hardCoded way
 //        @Bean
 //    public UserDetailsService userDetailsService(PasswordEncoder encoder){
 //
@@ -61,14 +61,14 @@ public class SecurityConfig {
                 .anyRequest().authenticated() // Any other request need to authenticated, you need to put username and password, etc.
                 .and()
 //                .httpBasic() // give us default pup-up box
-                .formLogin() // Here if I want to use my login form..
+                .formLogin() // Here if I want to use my own login form.
                 .loginPage("/login")
 //                .defaultSuccessUrl("/welcome")
-                .successHandler(authSuccessHandler) // if we want to use our custom pages that came after login page we need to define it by user role type look in "AuthSuccessHandler" config class.
+                .successHandler(authSuccessHandler) // if we want to use our custom pages that came after login page, we need to define it by user role type, look in "AuthSuccessHandler" config class.
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
-                .logout()
+                .logout() // this one give us logout option when we login the on the welcome page.
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login")
                 .and()

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Component
 public class BaseEntityListener extends AuditingEntityListener {
 
-// we use this class to set ID
+// At first we capture security users information then we that information to set PrePersist and Preupdate's ID
 // When we need to update or persist something we need to show that details in the dataBase for that we need to capture that information help of "BaseEntityListener" class
     @PrePersist
     private void onPrePersist(BaseEntity baseEntity){
